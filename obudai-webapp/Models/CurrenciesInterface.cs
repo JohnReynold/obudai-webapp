@@ -5,6 +5,15 @@ using System.Web;
 
 namespace obudai_webapp
 {
+
+    public class Currency
+    {
+        public string ID { get; set; }
+
+        public string Name { get; set; }
+        public double Value { get; set; }
+    }
+
     // inherit to implement database access
     public interface ICurrencies
     {

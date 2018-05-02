@@ -5,6 +5,12 @@ using System.Web;
 
 namespace obudai_webapp
 {
+    public class Balance
+    {
+        public int ID { get; set; }
+
+        public double BalanceValue { get; set; }
+    }
     // inherit to implement database access
     public interface IBalance
     {
@@ -24,6 +30,18 @@ namespace obudai_webapp
         // store this in db
         double balance = defaultBalanceValue;
         object balanceLock = new object();
+
+        public static IBalance GetInstance()
+        {
+            lock (creationLock)
+            {
+                if (instance == null)
+                {
+                    instance = new BalanceInterface();
+                }
+                return instance;
+            }
+        }
 
         public double ChangeBalance(double change)
         {
@@ -45,18 +63,6 @@ namespace obudai_webapp
             lock (balanceLock)
             {
                 return defaultBalanceValue; 
-            }
-        }
-
-        public static IBalance GetInstance()
-        {
-            lock (creationLock)
-            {
-                if (instance == null)
-                {
-                    instance = new BalanceInterface();
-                }
-                return instance; 
             }
         }
 

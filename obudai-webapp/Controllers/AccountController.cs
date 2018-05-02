@@ -11,7 +11,7 @@ namespace obudai_webapp.Controllers
 {
     public class AccountController : ApiController
     {
-        static IBalance balanceDataModel = BalanceInterface.GetInstance();
+        static IBalance balanceDataModel = BalanceHandler.GetInstance();
         static ICurrencies currencyDataModel = CurrenciesInterface.GetInstance();
         static ICurrencyRates currencyRateModel = CurrencyRates.GetInstance();
 
